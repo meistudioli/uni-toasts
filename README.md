@@ -131,3 +131,8 @@ uniToasts.show(
 
 ## Reference
 - [&lt;uni-toasts /> demo](https://blog.lalacube.com/mei/webComponent_uni-toasts.html)
+- [YouTube tutorial](https://youtube.com/shorts/SGylRYDkLts)
+- [Smooth transitions with the View Transition API](https://developer.chrome.com/docs/web-platform/view-transitions)
+- [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)
+
+
