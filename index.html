@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Web Component: &lt;uni-toast /> - a web component based on uniopen design language</title>
+<meta name="description" content="uni-toast is a robust Web Component built on the foundation of the uniopen design language. Its primary capability is delivering seamless message notifications across applications. By utilizing the provided attributes and properties, developers can finely tune the rendering and behavior of individual toasts to match specific UI requirements. Furthermore, the component natively supports multi-toast stacking, offering a sophisticated presentation layer that elevates the overall messaging experience into something diverse and engaging." />
+<script type="module" src="mjs/wc-uni-toast.js"></script>
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/wc-base.css">
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/layers/input-set.css">
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/layers/radio-set.css">
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/layers/defaults.css">
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/layers/buttons.css">
+<style>
+#hd,#ft{display:none;}
+body{position:relative;inline-size:100vw;block-size:100vh;margin:0;}
+
+.wrap {
+  inline-size: 100%;
+  max-inline-size: min(800px, calc(100% - 2em));
+  box-sizing: border-box;
+}
+
+.demo-wrap {
+  --background-color: rgba(220 226 240);
+
+  position: relative;
+  inline-size: min(100%, 800px);
+  block-size: 180px;
+  background-color: var(--background-color);
+  margin: 6em auto 1em;
+  box-sizing: border-box;
+  border-radius: 2em;
+  display: grid;
+  place-content: center;
+
+  @media (prefers-color-scheme: dark) {
+    --background-color: rgba(29 34 40);
+  }
+
+  .buttons[data-type='secondary1'] {
+    user-select: none;
+
+    @media (prefers-color-scheme: dark) {
+      --default-text-color: rgba(75 168 248);
+    }
+  }
+
+  &+.setting-form {
+    --subject-inline-size: 120px;
+    margin-block-start: 1em;
+
+    .adjustments__row:has(.input-set) {
+      align-items: center;
+    }
+
+    .input-set {
+      inline-size: 300px;
+
+      &:has(select) {
+        inline-size: 80px;
+      }
+    }
+  }
+}
+</style>
+</head>
+
+<body class="flex-center">
+<div class="wrap">
+  <div class="demo-wrap">
+    <button
+      type="button"
+      class="buttons"
+      data-type="secondary1"
+      data-size="large"
+    >
+      SUMMON TOAST
+    </button>
+  </div>
+
+  <form class="setting-form">
+    <ul class="adjustments">
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">content：</p>
+        <div class="adjustments__row__content">
+          <div class="input-set input-set--hide-label">
+            <input name="content" type="text" value="Show me the money." placeholder="input content here" />
+            <label class="input-set__label">
+              <span class="input-set__label__span">label</span>
+            </label>
+            <em class="input-set__em"></em>
+          </div>
+        </div>
+      </li>
+
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">stat：</p>
+        <div class="adjustments__row__content">
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="stat-0" type="radio" name="stat" value="valid" checked />
+              <label class="radio-set__label" for="stat-0"></label>
+            </div>
+
+            <label for="stat-0">
+              valid
+            </label>
+          </div>
+
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="stat-1" type="radio" name="stat" value="invalid" />
+              <label class="radio-set__label" for="stat-1"></label>
+            </div>
+
+            <label for="stat-1">
+              invalid
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">maxcount：</p>
+        <div class="adjustments__row__content">
+          <div class="input-set input-set--hide-label">
+            <select name="maxcount">
+              <option value="3">3</option>
+              <option value="6" selected>6</option>
+              <option value="9">9</option>
+            </select>
+            <label class="input-set__label">
+              <span class="input-set__label__span">label</span>
+            </label>
+            <em class="input-set__em"></em>
+          </div>
+        </div>
+      </li>
+
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">action：</p>
+        <div class="adjustments__row__content">
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="action-0" type="radio" name="action" value="y" />
+              <label class="radio-set__label" for="action-0"></label>
+            </div>
+
+            <label for="action-0">
+              Yes
+            </label>
+          </div>
+
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="action-1" type="radio" name="action" value="n" checked />
+              <label class="radio-set__label" for="action-1"></label>
+            </div>
+
+            <label for="action-1">
+              No
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">auto dismiss：</p>
+        <div class="adjustments__row__content">
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="autodismiss-0" type="radio" name="autodismiss" value="y" />
+              <label class="radio-set__label" for="autodismiss-0"></label>
+            </div>
+
+            <label for="autodismiss-0">
+              Yes
+            </label>
+          </div>
+
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="autodismiss-1" type="radio" name="autodismiss" value="n" checked />
+              <label class="radio-set__label" for="autodismiss-1"></label>
+            </div>
+
+            <label for="autodismiss-1">
+              No
+            </label>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </form>
+
+  <uni-toast maxcount="6"></uni-toast>
+</div>
+
+<script type="module">
+await customElements.whenDefined('uni-toast');
+
+const trigger = document.querySelector('.demo-wrap button');
+const uniToast = document.querySelector('uni-toast');
+const form = document.querySelector('.setting-form');
+
+const handler = (evt) => {
+  const { target, type } = evt;
+  const formData = new FormData(form);
+  const fd = Object.fromEntries(formData.entries());
+
+  switch (type) {
+    case 'click': {
+      uniToast.show(
+        fd['content'],
+        {
+          stat: fd['stat'],
+          ...(fd['action'] === 'n' ? {} : { action: 'action', params: { url: 'https://tw.bid.yahoo.com' } })
+        }
+      );
+      break;
+    }
+
+    case 'input': {
+      if (target.name === 'maxcount') {
+        uniToast.maxcount = +fd['maxcount'];
+      } else if (target.name === 'autodismiss') {
+        uniToast.autodismiss = fd['autodismiss'] === 'y';
+      }
+      break;
+    }
+
+    case 'uni-toast-action-click': {
+      const { detail } = event;
+      
+      console.log(
+        `%cuni-toast%c > %cuni-toast-action-click%c`,
+        'font-size:12px;line-height:1.3;background:#3a99d8;color:#fff;border-radius:3px;padding:0 4px;',
+        'font-size:12px;line-height:1.3;',
+        'font-size:12px;line-height:1.3;color:#a4f6b7;',
+        'font-size:12px;line-height:1.3;'
+      );
+
+      console.log(detail);
+      break;
+    }
+  }
+};
+
+trigger.addEventListener('click', handler);
+uniToast.addEventListener('uni-toast-action-click', handler);
+form.addEventListener('input', handler);
+</script>
+
+</body>
+
+</html>
