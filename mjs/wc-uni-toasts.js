@@ -13,7 +13,7 @@ const defaults = {
 const booleanAttrs = ['autodismiss'];
 const objectAttrs = [];
 const custumEvents = {
-  'actionClick': 'uni-toast-action-click'
+  'actionClick': 'uni-toasts-action-click'
 };
 const isVTSupport = !!document.startViewTransition;
 
@@ -26,7 +26,7 @@ ${_uniColorPalette}
 :host{position:relative;display:block;}
 
 .main {
-  --axis-y: var(--uni-toast-axis-y, 76px);
+  --axis-y: var(--uni-toasts-axis-y, 76px);
   --main-gap: 32px;
 
   @media screen and (max-width: 767px) {
@@ -93,7 +93,7 @@ ${_uniColorPalette}
 
 const templateToast = document.createElement('template');
 templateToast.innerHTML = `
-<div id="{{id}}" class="uni-toast__unit" data-stat="{{stat}}" data-expire="{{expire}}">
+<div id="{{id}}" class="uni-toasts__unit" data-stat="{{stat}}" data-expire="{{expire}}">
   <em class="icon"></em>
   <p class="content line-clampin">{{content}}</p>
   <button type="button" class="action" data-type="action">{{action}}</button>
@@ -163,8 +163,8 @@ const styleInjection = `
 }
 
 /* toast */
-uni-toast {
-  .uni-toast__unit {
+uni-toasts {
+  .uni-toasts__unit {
     --background-color: var(--ct_toast_container_success);
     --border-color: var(--ct_toast_stroke_success);
     --icon-color: var(--ct_icon_success_general);
@@ -280,7 +280,7 @@ const uiInit = () => {
 };
 uiInit();
 
-export class UniToast extends HTMLElement {
+export class UniToasts extends HTMLElement {
   #data;
   #nodes;
   #config;
@@ -308,7 +308,7 @@ export class UniToast extends HTMLElement {
     // config
     this.#config = {
       ...defaults,
-      ...config // new UniToast(config)
+      ...config // new UniToasts(config)
     };
 
     // evts
@@ -368,7 +368,7 @@ export class UniToast extends HTMLElement {
   }
 
   attributeChangedCallback(attrName, oldValue, newValue) {
-    if (!UniToast.observedAttributes.includes(attrName)) {
+    if (!UniToasts.observedAttributes.includes(attrName)) {
       return;
     }
 
@@ -387,7 +387,7 @@ export class UniToast extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return Object.keys(defaults); // UniToast.observedAttributes
+    return Object.keys(defaults); // UniToasts.observedAttributes
   }
 
   static get supportedEvents() {
@@ -401,7 +401,7 @@ export class UniToast extends HTMLElement {
   #upgradeProperty(prop) {
     let value;
 
-    if (UniToast.observedAttributes.includes(prop)) {
+    if (UniToasts.observedAttributes.includes(prop)) {
       if (Object.prototype.hasOwnProperty.call(this, prop)) {
         value = this[prop];
         delete this[prop];
@@ -459,7 +459,7 @@ export class UniToast extends HTMLElement {
 
     evt.preventDefault();
 
-    const toast = target.closest('.uni-toast__unit');
+    const toast = target.closest('.uni-toasts__unit');
     const updateDOM = () => {
       this.#data.storage.delete(toast.id);
       toast.remove();
@@ -492,7 +492,7 @@ export class UniToast extends HTMLElement {
   }
 
   #toastExpireCheck = async () => {
-    const existToasts = Array.from(this.querySelectorAll('.uni-toast__unit'));
+    const existToasts = Array.from(this.querySelectorAll('.uni-toasts__unit'));
     const now = +new Date();
 
     const expiredToasts = existToasts.filter(
@@ -538,7 +538,7 @@ export class UniToast extends HTMLElement {
   }
 
   #dismissCheck() {
-    if (this.querySelector('.uni-toast__unit')) {
+    if (this.querySelector('.uni-toasts__unit')) {
       return;
     }
 
@@ -577,7 +577,7 @@ export class UniToast extends HTMLElement {
     this.#nodes.container.showPopover();
 
     const updateDOM = () => {
-      const existToasts = Array.from(this.querySelectorAll('.uni-toast__unit'));
+      const existToasts = Array.from(this.querySelectorAll('.uni-toasts__unit'));
 
       if (existToasts.length + 1 > this.maxcount) {
         existToasts.slice(0, existToasts.length + 1 - this.maxcount).forEach(
@@ -607,7 +607,7 @@ export class UniToast extends HTMLElement {
 
 // define web component
 const S = _wcl.supports();
-const T = _wcl.classToTagName('UniToast');
+const T = _wcl.classToTagName('UniToasts');
 if (S.customElements && S.shadowDOM && S.template && !window.customElements.get(T)) {
-  window.customElements.define(_wcl.classToTagName('UniToast'), UniToast);
+  window.customElements.define(_wcl.classToTagName('UniToasts'), UniToasts);
 }

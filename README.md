@@ -2,22 +2,22 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/uni-toast) [![DeepScan grade](https://deepscan.io/api/teams/16372/projects/32048/branches/1041729/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=16372&pid=32048&bid=1041729)
 
-&lt;uni-toast /> is a robust Web Component built on the foundation of the uniopen design language. Its primary capability is delivering seamless message notifications across applications.
+&lt;uni-toasts /> is a robust Web Component built on the foundation of the uniopen design language. Its primary capability is delivering seamless message notifications across applications.
 
 By utilizing the provided attributes and properties, developers can finely tune the rendering and behavior of individual toasts to match specific UI requirements. Furthermore, the component natively supports multi-toast stacking, offering a sophisticated presentation layer that elevates the overall messaging experience into something diverse and engaging.
 
-![<uni-toast />](https://blog.lalacube.com/mei/img/preview/uni-toast.png)
+![<uni-toasts />](https://blog.lalacube.com/mei/img/preview/uni-toasts.png)
 
 ## Basic Usage
 
-&lt;uni-toast /> is a web component. All we need to do is put the required script into your HTML document. Then follow &lt;uni-toast />'s html structure and everything will be all set.
+&lt;uni-toasts /> is a web component. All we need to do is put the required script into your HTML document. Then follow &lt;uni-toasts />'s html structure and everything will be all set.
 
 - Required Script
 
   ```html
   <script
     type="module"
-    src="https://unpkg.com/uni-toast/mjs/wc-uni-toast.js">        
+    src="https://unpkg.com/uni-toasts/mjs/wc-uni-toasts.js">        
   </script>
   ```
 
@@ -26,27 +26,27 @@ By utilizing the provided attributes and properties, developers can finely tune 
   Put &lt;uni-tab-group /> into HTML document. It will have different functions and looks with attribute mutation.
   
   ```html
-  <uni-toast
+  <uni-toasts
     maxcount="3"
     autodismiss
-  ></uni-toast>
+  ></uni-toasts>
   ```
 
 ## JavaScript Instantiation
 
-&lt;uni-toast /> could also use JavaScript to create DOM element. Here comes some examples.
+&lt;uni-toasts /> could also use JavaScript to create DOM element. Here comes some examples.
 
 ```html
 <script type="module">
-import { UniToast } from 'https://unpkg.com/uni-toast/mjs/wc-uni-toast.js';
+import { UniToasts } from 'https://unpkg.com/uni-toasts/mjs/wc-uni-toasts.js';
 
 // use DOM api
-const nodeA = document.createElement('uni-toast');
+const nodeA = document.createElement('uni-toasts');
 document.body.appendChild(nodeA);
 nodeA.maxcount = 3;
 
 // new instance with Class
-const nodeB = new UniToast();
+const nodeB = new UniToasts();
 document.body.appendChild(nodeB);
 nodeB.maxcount = 3;
 
@@ -55,36 +55,36 @@ const config = {
   maxcount: 3,
   autodismiss: true
 };
-const nodeC = new UniToast(config);
+const nodeC = new UniToasts(config);
 document.body.appendChild(nodeC);
 </script>
 ```
 
 ## Style Customization
 
-Developers could apply styles to decorate &lt;uni-toast />'s looking.
+Developers could apply styles to decorate &lt;uni-toasts />'s looking.
 
 ```html
 <style>
-uni-toast {
-  --uni-toast-axis-y: 76px;
+uni-toasts {
+  --uni-toasts-axis-y: 76px;
 }
 </style>
 ```
 
 ## Attributes
 
-&lt;uni-toast /> component exposes a curated set of attributes, enabling developers to dynamically adjust the user interface. This provides the flexibility to tailor the component’s appearance to seamlessly adapt to any given context.
+&lt;uni-toasts /> component exposes a curated set of attributes, enabling developers to dynamically adjust the user interface. This provides the flexibility to tailor the component’s appearance to seamlessly adapt to any given context.
 
 - **maxcount**
 
   The `maxcount` attribute defines the maximum number of toast notifications allowed to be displayed simultaneously on the screen. When the number of active toasts exceeds this specified limit, the oldest notification will be automatically dismissed to make room for the new one. This attribute enforces a strict validation range, accepting integer values from a minimum of `2` to a maximum of `20`. If an invalid value is supplied or omitted, the component defaults to `3`.
 
   ```html
-  <uni-toast
+  <uni-toasts
     maxcount="3"
   >
-  </uni-toast>
+  </uni-toasts>
   ```
 
 - **autodismiss**
@@ -92,10 +92,10 @@ uni-toast {
   The `autodismiss` attribute determines whether toast notifications are automatically cleared after a specific duration. Each notification carries a predefined lifespan based on its content type: standard messages persist for `3 seconds`, while notifications containing an action button extend their visibility to `6 seconds` to allow for user interaction. Enforcing this attribute activates the automatic cleanup mechanism. By default, this feature is disabled.
 
   ```html
-  <uni-toast
+  <uni-toasts
     autodismiss
   >
-  </uni-toast>
+  </uni-toasts>
   ```
 
 ## Properties
@@ -114,9 +114,9 @@ Here comes the example.
 
 ```html
 <script type="module">
-const uniToast = document.querySelector('uni-toast');
+const uniToasts = document.querySelector('uni-toasts');
 
-uniToast.show(
+uniToasts.show(
   'Show me the money',
   {
     stat: 'valid', // (String). Typically accepts state tokens such as 'valid' or 'invalid'
@@ -130,4 +130,4 @@ uniToast.show(
 ```
 
 ## Reference
-- [&lt;uni-toast /> demo](https://blog.lalacube.com/mei/webComponent_uni-toast.html)
+- [&lt;uni-toasts /> demo](https://blog.lalacube.com/mei/webComponent_uni-toasts.html)
