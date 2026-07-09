@@ -1,5 +1,5 @@
-import { _wcl } from './common-lib.js';
-import { _wccss } from './common-css.js';
+import { _wcl } from 'https://unpkg.com/uni-input-field/mjs/common-lib.js';
+import { _wccss } from 'https://unpkg.com/uni-input-field/mjs/common-css.js';
 import {
   colorPalette as _uniColorPalette
 } from 'https://unpkg.com/uni-input-field/mjs/uni-css.js';
@@ -38,7 +38,7 @@ ${_uniColorPalette}
     --padding:
       max(var(--axis-y), var(--safe-area-top))
       max(var(--main-gap), var(--safe-area-right))
-      0
+      var(--main-gap)
       0
     ;
     --flex-direction: column-reverse;
@@ -48,7 +48,7 @@ ${_uniColorPalette}
     @media screen and (max-width: 767px) {
       --inset: auto 0 0 0;
       --padding:
-        0
+        var(--main-gap)
         max(var(--main-gap), var(--safe-area-right))
         max(var(--main-gap), var(--safe-area-bottom))
         max(var(--main-gap), var(--safe-area-left))
@@ -76,7 +76,6 @@ ${_uniColorPalette}
     /* popover */
     &:popover-open {
       display: flex;
-      pointer-events1: none;
     }
     border: none;
     background: transparent;
