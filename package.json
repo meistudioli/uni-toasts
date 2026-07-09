@@ -1,6 +1,6 @@
 {
   "name": "uni-toasts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "<uni-toasts /> is a robust Web Component built on the foundation of the uniopen design language. Its primary capability is delivering seamless message notifications across applications. By utilizing the provided attributes and properties, developers can finely tune the rendering and behavior of individual toasts to match specific UI requirements. Furthermore, the component natively supports multi-toast stacking, offering a sophisticated presentation layer that elevates the overall messaging experience into something diverse and engaging.",
   "keywords": [
     "web"

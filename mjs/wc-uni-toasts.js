@@ -12,7 +12,7 @@ const defaults = {
 
 const booleanAttrs = ['autodismiss'];
 const objectAttrs = [];
-const custumEvents = {
+const customEvents = {
   'actionClick': 'uni-toasts-action-click'
 };
 const isVTSupport = !!document.startViewTransition;
@@ -390,9 +390,9 @@ export class UniToasts extends HTMLElement {
   }
 
   static get supportedEvents() {
-    return Object.keys(custumEvents).map(
+    return Object.keys(customEvents).map(
       (key) => {
-        return custumEvents[key];
+        return customEvents[key];
       }
     );
   }
@@ -484,7 +484,7 @@ export class UniToasts extends HTMLElement {
 
       case 'action': {
         const params = this.#data.storage.get(toast.id);
-        this.#fireEvent(custumEvents.actionClick, { ...params });
+        this.#fireEvent(customEvents.actionClick, { ...params });
         break;
       }
     }
